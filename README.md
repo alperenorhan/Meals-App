@@ -1,5 +1,10 @@
 # Meals App 🎯
 This app made by using React Native.
+## Using Techs 🖥
+- [React Native](https://reactnative.dev/)
+- [React Navigation](https://reactnavigation.org/)
+- [Expo](https://expo.dev/)
+- [Context API](https://reactjs.org/docs/context.html)
 ## Screenshots from App 📸
 <div style="flex-direction:'row';margin:30;">
 <img src="./assets/public/screenshot1.png" height="500" />
