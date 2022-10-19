@@ -1,7 +1,15 @@
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Button,
+} from "react-native";
+import React, { useLayoutEffect } from "react";
 import { MEALS } from "../../data/dummy-data";
 
+import IconButton from "../components/IconButton";
 import MealDetailsCard from "../components/MealDetailsCard";
 import Subtitle from "../components/Subtitle";
 import List from "../components/List";
@@ -9,8 +17,29 @@ import List from "../components/List";
 export default function MealDetail({ route, navigation }) {
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  const headerButtonPressHandler = () => {
+    console.log("Pressed");
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            icon="star"
+            onPress={headerButtonPressHandler}
+            color="#fff"
+          />
+        );
+      },
+    });
+  }, [navigation, headerButtonPressHandler]);
   return (
-    <ScrollView style={styles.rootContainer} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={styles.rootContainer}
+      showsVerticalScrollIndicator={false}
+    >
       <Image style={styles.image} source={{ uri: selectedMeal.imageUrl }} />
       <Text style={styles.title}>{selectedMeal.title}</Text>
       <MealDetailsCard
@@ -53,6 +82,6 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   listOuterContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
 });
